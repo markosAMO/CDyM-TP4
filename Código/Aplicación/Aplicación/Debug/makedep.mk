@@ -6,3 +6,5 @@ ADC.c
 
 main.c
 
+termometro.c
+

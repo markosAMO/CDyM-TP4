@@ -38,7 +38,8 @@ SUBDIRS :=
 # Add inputs and outputs from these tool invocations to the build variables 
 C_SRCS +=  \
 ../ADC.c \
-../main.c
+../main.c \
+../termometro.c
 
 
 PREPROCESSING_SRCS += 
@@ -49,19 +50,23 @@ ASM_SRCS +=
 
 OBJS +=  \
 ADC.o \
-main.o
+main.o \
+termometro.o
 
 OBJS_AS_ARGS +=  \
 ADC.o \
-main.o
+main.o \
+termometro.o
 
 C_DEPS +=  \
 ADC.d \
-main.d
+main.d \
+termometro.d
 
 C_DEPS_AS_ARGS +=  \
 ADC.d \
-main.d
+main.d \
+termometro.d
 
 OUTPUT_FILE_PATH +=Aplicación.elf
 
@@ -77,6 +82,8 @@ LINKER_SCRIPT_DEP+=
 
 
 # AVR32/GNU C Compiler
+
+
 
 
 
