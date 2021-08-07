@@ -1,3 +1,9 @@
+/*
+ * Control_Temperatura.c
+ *
+ * Created: 7/8/2021 12:53:16
+ * Author : soyal
+ */ 
 #include <avr/io.h>
 #define F_CPU 16000000UL
 //#include <util/delay.h>
@@ -8,11 +14,11 @@ int main (void)
 	DDRB=0xff;
 	TERMOMETRO_init();
 	while(1)
-	{	
+	{
 		if (TERMOMETRO_get_temperatura()==25){
 			PORTB^=1;
-		}	
-	//	_delay_ms(100);
+		}
+		//	_delay_ms(100);
 	}
 	return 1;
 }

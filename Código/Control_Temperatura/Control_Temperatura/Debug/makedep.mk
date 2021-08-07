@@ -4,6 +4,8 @@
 
 ADC.c
 
+lcd.c
+
 main.c
 
 termometro.c
