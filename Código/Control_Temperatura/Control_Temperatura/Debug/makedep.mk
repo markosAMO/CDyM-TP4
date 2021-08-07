@@ -4,6 +4,8 @@
 
 ADC.c
 
+controlador_lcd.c
+
 lcd.c
 
 main.c

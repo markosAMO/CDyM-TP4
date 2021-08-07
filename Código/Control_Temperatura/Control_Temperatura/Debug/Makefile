@@ -38,6 +38,7 @@ SUBDIRS :=
 # Add inputs and outputs from these tool invocations to the build variables 
 C_SRCS +=  \
 ../ADC.c \
+../controlador_lcd.c \
 ../lcd.c \
 ../main.c \
 ../termometro.c
@@ -51,24 +52,28 @@ ASM_SRCS +=
 
 OBJS +=  \
 ADC.o \
+controlador_lcd.o \
 lcd.o \
 main.o \
 termometro.o
 
 OBJS_AS_ARGS +=  \
 ADC.o \
+controlador_lcd.o \
 lcd.o \
 main.o \
 termometro.o
 
 C_DEPS +=  \
 ADC.d \
+controlador_lcd.d \
 lcd.d \
 main.d \
 termometro.d
 
 C_DEPS_AS_ARGS +=  \
 ADC.d \
+controlador_lcd.d \
 lcd.d \
 main.d \
 termometro.d
@@ -87,6 +92,8 @@ LINKER_SCRIPT_DEP+=
 
 
 # AVR32/GNU C Compiler
+
+
 
 
 

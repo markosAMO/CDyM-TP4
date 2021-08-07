@@ -124,6 +124,12 @@
     <Compile Include="ADC.h">
       <SubType>compile</SubType>
     </Compile>
+    <Compile Include="controlador_lcd.c">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="controlador_lcd.h">
+      <SubType>compile</SubType>
+    </Compile>
     <Compile Include="lcd.c">
       <SubType>compile</SubType>
     </Compile>
