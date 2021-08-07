@@ -9,21 +9,26 @@
 
 void set_puertos()
 {
-	DDRC = 0x03;
-	PORTC = 0x00;
+	DDRD = 0x03;
+	PORTD = 0x00;
 }
 
 void encender_estufa()
 {
-	PORTC = 0x01;
+	PORTD0 = 1;
 }
 
-void apagar()
+void apagar_estufa()
 {
-	PORTC = 0x00;
+	PORTD0 = 0;
 }
 
 void encender_ventilador()
 {
-	PORTC = 0x02;
+	PORTD1 = 1;
+}
+
+void apagar_ventilador()
+{
+	PORTD = 0;
 }
