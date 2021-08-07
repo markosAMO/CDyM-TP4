@@ -6,16 +6,19 @@
  */ 
 #include "ADC.h"
 
-void ADC_estado_defecto(void){
+
+//funciones para el init
+void ADC_preInit(void){
 	ADCSRA=0;
 	ADMUX= 0x00;
 }
-
+void ADC_set_ADC0_input_analog(void){
+	DIDR0= 0x01;
+}
 void ADC_enabled(void){
 	ADCSRA|=(1<<ADEN);
 	
 }
-
 
 void ADC_preescaler(int prescaler){
 	switch (prescaler)
@@ -43,11 +46,15 @@ void ADC_select_pin(int pin){
 	ADMUX|= pin;
 	
 }
-
-void ADC_set_ADC0_input_analog(void){
-	DIDR0= 0x01;
+//fin de funciones para el init
+void ADC_init(int prescaler, int pin){
+	ADC_preInit();
+	ADC_set_ADC0_input_analog();
+	ADC_enabled();
+	ADC_preescaler(128);
+	ADC_select_pin(0);
 }
-
+//funciones para operar el ADC
 void ADC_Start(void){
 	  ADCSRA |= (1<<ADSC);//start conversion
 }
@@ -67,10 +74,3 @@ int ADC_get_resultado_bajo(void){
 	return  ADCL;//give the high byte
 }
 
-void ADC_init(int prescaler, int pin){
-		ADC_estado_defecto();
-		ADC_set_ADC0_input_analog();
-		ADC_enabled();
-		ADC_preescaler(128);
-		ADC_select_pin(0);
-}
