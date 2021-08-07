@@ -30,7 +30,7 @@ int main (void)
 	TERMOMETRO_init();
 	while(1)
 	{
-		imprimir(TERMOMETRO_get_temperatura());
+		imprimir(TERMOMETRO_get_temperatura_entero());
 		_delay_ms(100);
 		LCDclr();			
 	}
