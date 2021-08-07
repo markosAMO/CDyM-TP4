@@ -7,6 +7,7 @@
 
 #include "controlador_lcd.h"
 #include "termometro.h"
+
 #include "string.h"
 #include "avr/interrupt.h"
 
@@ -26,20 +27,29 @@ void regular_temperatura()
 	
 	if (temperatura_actual <= limite_inferior)
 	{
-		//encender estufa y apagar ventilador
+		encender_estufa();
+		apagar_ventilador();
 	}
 	else if (temperatura_actual >= limite_superior)
 	{
-		//apagar estufa y encender ventilador
+		encender_ventilador();
+		apagar_estufa();
 	}
 	else
 	{
-		//apagar estufa y ventilador
+		apagar_ventilador();
+		apagar_estufa();
 	}
 	
 }
 
 void set_temperatura_display(int temperatura)
 {
-	sprintf(linea_inferior, "%d", temperatura) 
+	sprintf(linea_inferior, "%d", temperatura);
+}
+
+void set_renglones_display()
+{
+	actualizarVarInferior(linea_inferior);
+	actualizarVarSuperior(linea_superior);
 }
