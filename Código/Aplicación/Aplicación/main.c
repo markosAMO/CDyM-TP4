@@ -1,5 +1,5 @@
 /*
- * Aplicación.c
+ * Aplicacion.c
  *
  * Created: 6/08/2021 17:54:52
  * Author : GOD
