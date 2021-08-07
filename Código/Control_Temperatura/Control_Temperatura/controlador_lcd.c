@@ -2,6 +2,15 @@
 #include "lcd.h"
 uint8_t x = 16;
 
+void mostrarString(const char *dato, uint8_t x, uint8_t y, uint8_t size )
+{ //recibe el string, la posición a ser mostrado y la longitud del string
+	uint8_t i;
+	LCDGotoXY(x,y);
+	for(i=0;i<size;i++){ //no se porque -2 pero así si
+		LCDsendChar(dato[i]);
+	}
+}
+/**
 void mostrarString(const uint8_t *dato, uint8_t x, uint8_t y, uint8_t size )
 { //recibe el string, la posición a ser mostrado y la longitud del string
 	uint8_t i;
@@ -10,6 +19,7 @@ void mostrarString(const uint8_t *dato, uint8_t x, uint8_t y, uint8_t size )
 		LCDsendChar(dato[i]);
 	}
 }
+**/
 void mostrarArriba(const uint8_t *dato)
 { //recibe el string, la posición a ser mostrado y la longitud del string
 	uint8_t i;
@@ -18,6 +28,7 @@ void mostrarArriba(const uint8_t *dato)
 		LCDsendChar(dato[i]);
 	}
 }
+
 void mostrarAbajo(const uint8_t *dato)
 { //recibe el string, la posición a ser mostrado y la longitud del string
 	uint8_t i;

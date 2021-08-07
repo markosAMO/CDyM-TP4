@@ -7,15 +7,17 @@
 
 #include "ADC.h"
 #include "termometro.h"
+#include <avr/io.h>
 
 
 void TERMOMETRO_init(void){
-	ADC_init(128,0);
+	ADC_init(64,0);
 }
 
-int TERMOMETRO_get_temperatura(void){
+uint8_t TERMOMETRO_get_temperatura(void){
+	
 	ADC_Start();
 	while(ADC_conversion_completed()); //wait for conversion to finish
-	ADC_flag_reset();
-	return ADC_get_resultado_bajo()/10;
+	ADC_flag_reset();	
+	return ADC_get_resultado_bajo()/2;
 }

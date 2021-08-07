@@ -6,4 +6,4 @@
  */ 
 #include <avr/io.h>
 void TERMOMETRO_init(void);
-int TERMOMETRO_get_temperatura(void);
+uint8_t TERMOMETRO_get_temperatura(void);

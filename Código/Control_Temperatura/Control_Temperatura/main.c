@@ -5,23 +5,34 @@
  * Author : soyal
  */ 
 #include <avr/io.h>
-#define F_CPU 16000000UL
+#define F_CPU 8000000UL
 #include <util/delay.h>
 #include "ADC.h"
 #include "termometro.h"
+#include "controlador_lcd.h"
+#include "lcd.h"
+
+#include <stdlib.h>
+#include <string.h>
+void imprimir( uint8_t temperatura ){
+		char temperatura_en_string[3]="00";
+		itoa(temperatura,temperatura_en_string,10);
+		if (temperatura<10){
+			mostrarString(temperatura_en_string,0,0,1);	
+		}else{
+			mostrarString(temperatura_en_string,0,0,2);
+		}			
+}
+
 int main (void)
 {
-	DDRD=0xff;
-	PORTD=0x0;
+	LCDinit();
 	TERMOMETRO_init();
-	int dato=0;
 	while(1)
 	{
-		dato=TERMOMETRO_get_temperatura();
-		mostrarString(&dato, 1, 1, 8 );
-		
-		
-			_delay_ms(100);
+		imprimir(TERMOMETRO_get_temperatura());
+		_delay_ms(100);
+		LCDclr();			
 	}
 	return 1;
 }

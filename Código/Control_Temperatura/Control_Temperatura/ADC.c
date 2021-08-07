@@ -51,8 +51,8 @@ void ADC_init(int prescaler, int pin){
 	ADC_preInit();
 	ADC_set_ADC0_input_analog();
 	ADC_enabled();
-	ADC_preescaler(128);
-	ADC_select_pin(0);
+	ADC_preescaler(prescaler);
+	ADC_select_pin(pin);
 }
 //funciones para operar el ADC
 void ADC_Start(void){
@@ -71,6 +71,8 @@ int ADC_get_resultado_alto(void){
 	return  ADCH;//give the low byte
 }
 int ADC_get_resultado_bajo(void){
-	return  ADCL;//give the high byte
+	int resultado=ADCL;
+	int basura=ADCH;  // esta linea no sirve para nada pero si lo quito se rompe todo el programa
+	return  resultado;//give the high byte
 }
 
