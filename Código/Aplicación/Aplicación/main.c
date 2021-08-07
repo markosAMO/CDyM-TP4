@@ -6,14 +6,18 @@
  */ 
 
 #include <avr/io.h>
-
-
+#include "lcd.h"
+#include "controlador_lcd.h"
+#define F_CPU 8000000L
 int main(void)
 {
-    /* Replace with your application code */
+	
+    LCDinit();
+	actualizarVarInferior("HOLA COMO ESTÁS?");
+	actualizarVarSuperior("HOLA COMO ESTÁS?");
     while (1) 
     {
-		
+		mostrar();
     }
 }
 
