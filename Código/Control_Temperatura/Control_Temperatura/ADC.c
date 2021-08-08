@@ -13,7 +13,7 @@ void ADC_preInit(void){
 	ADMUX= 0x00;
 }
 void ADC_set_ADC0_input_analog(void){
-	DIDR0= 0x01;
+	DIDR0= 0x01; //Vref=AVCC, right-justified
 }
 void ADC_enabled(void){
 	ADCSRA|=(1<<ADEN);

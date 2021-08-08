@@ -6,7 +6,7 @@
  </FRAME>
  <MODULE name="VSMDEBUG">
   <PWI>
-   <POPUP w="800" x="415" flags="00000002" y="0" h="200" pid="0" iid="-1">
+   <POPUP w="800" x="415" flags="00008003" y="0" h="200" pid="0" iid="-1">
     <PROPERTIES>
      <ITEM name="Message Column Width">661</ITEM>
      <ITEM name="ShowGrid">No</ITEM>
@@ -95,13 +95,67 @@
      <ITEM name="TopLineAddress">00000020</ITEM>
     </PROPERTIES>
    </POPUP>
-   <POPUP w="781" x="484" flags="0000802b" y="527" h="437" pid="1" iid="1">
+   <POPUP w="781" x="216" flags="0000002b" y="509" h="437" pid="1" iid="1">
     <PROPERTIES>
-     <ITEM name="Breakpoint 0">"main",0190,0018,5C87,82DD,-1
+     <ITEM name="Breakpoint 0">"ADC_init",01AA,0028,C928,D011,-1
 </ITEM>
-     <ITEM name="Breakpoint 1">"main",0182,001A,42FF,82DD,-1
+     <ITEM name="Breakpoint 1">"ADC_init",01B0,002E,BE92,D011,-1
 </ITEM>
-     <ITEM name="Breakpoint 2">"main",0098,001E,0393,82DD,-1
+     <ITEM name="Breakpoint 10">"mostrarString",0264,003A,C928,D011,-1
+</ITEM>
+     <ITEM name="Breakpoint 11">"mostrarString",0266,003C,3D68,D011,-1
+</ITEM>
+     <ITEM name="Breakpoint 12">"mostrarString",0268,003E,FDA9,D011,-1
+</ITEM>
+     <ITEM name="Breakpoint 13">"mostrarString",026E,0044,BE92,D011,-1
+</ITEM>
+     <ITEM name="Breakpoint 14">"LCDsendChar",0270,0000,650D,D011,-1
+</ITEM>
+     <ITEM name="Breakpoint 15">"LCDinit",040E,00A8,3D68,D011,-1
+</ITEM>
+     <ITEM name="Breakpoint 16">"LCDinit",0410,00AA,BE92,D011,-1
+</ITEM>
+     <ITEM name="Breakpoint 17">"LCDclr",0302,0006,BE92,D011,-1
+</ITEM>
+     <ITEM name="Breakpoint 18">"LCDsendChar",027A,000A,43FB,D011,-1
+</ITEM>
+     <ITEM name="Breakpoint 19">"LCDsendChar",027C,000C,51F9,D011,-1
+</ITEM>
+     <ITEM name="Breakpoint 2">"ADC_get_voltaje_real",0228,0028,BE92,D011,-1
+</ITEM>
+     <ITEM name="Breakpoint 20">"intTostring",0424,0012,76E1,D011,-1
+</ITEM>
+     <ITEM name="Breakpoint 21">"intTostring",0436,0024,3D68,D011,-1
+</ITEM>
+     <ITEM name="Breakpoint 22">"intTostring",0438,0026,FDA9,D011,-1
+</ITEM>
+     <ITEM name="Breakpoint 23">"floatToString",0444,0008,9FDB,D011,-1
+</ITEM>
+     <ITEM name="Breakpoint 24">"main",05A6,0004,5D2E,D011,-1
+</ITEM>
+     <ITEM name="Breakpoint 25">"main",05C8,0026,8D19,D011,-1
+</ITEM>
+     <ITEM name="Breakpoint 26">"main",05D0,002E,DC62,D011,-1
+</ITEM>
+     <ITEM name="Breakpoint 27">"TERMOMETRO_init",05D2,0000,F5A0,D011,-1
+</ITEM>
+     <ITEM name="Breakpoint 28">"TERMOMETRO_init",05D4,0002,359D,D011,-1
+</ITEM>
+     <ITEM name="Breakpoint 29">"TERMOMETRO_init",05DE,000C,BE92,D011,-1
+</ITEM>
+     <ITEM name="Breakpoint 3">"mostrarString",022A,0000,5E5A,D011,-1
+</ITEM>
+     <ITEM name="Breakpoint 4">"mostrarString",022C,0002,9E9B,D011,-1
+</ITEM>
+     <ITEM name="Breakpoint 5">"mostrarString",022E,0004,9FDB,D011,-1
+</ITEM>
+     <ITEM name="Breakpoint 6">"mostrarString",0230,0006,5F1A,D011,-1
+</ITEM>
+     <ITEM name="Breakpoint 7">"mostrarString",0232,0008,AB5A,D011,-1
+</ITEM>
+     <ITEM name="Breakpoint 8">"mostrarString",0234,000A,6B9B,D011,-1
+</ITEM>
+     <ITEM name="Breakpoint 9">"mostrarString",023E,0014,6FDD,D011,-1
 </ITEM>
      <ITEM name="CaseSensitive">No</ITEM>
      <ITEM name="DISPADDRS">Yes</ITEM>
@@ -109,10 +163,10 @@
      <ITEM name="DISPOPCODES">No</ITEM>
      <ITEM name="FIXUPBPTS">Yes</ITEM>
      <ITEM name="WordsOnly">No</ITEM>
-     <ITEM name="nBreakpoints">0</ITEM>
+     <ITEM name="nBreakpoints">30</ITEM>
     </PROPERTIES>
    </POPUP>
-   <POPUP w="300" x="1386" flags="0000000b" y="124" h="300" pid="2" iid="1">
+   <POPUP w="478" x="1386" flags="0000000b" y="124" h="474" pid="2" iid="1">
     <PROPERTIES>
      <ITEM name="Address Column Width">93</ITEM>
      <ITEM name="AutoResize">No</ITEM>
