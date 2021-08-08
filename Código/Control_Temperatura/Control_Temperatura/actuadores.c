@@ -1,9 +1,4 @@
-﻿/*
- * actuadores.c
- *
- * Created: 07/08/2021 17:32:45
- *  Author: Agustín
- */ 
+﻿
 
 #include "avr/io.h"
 

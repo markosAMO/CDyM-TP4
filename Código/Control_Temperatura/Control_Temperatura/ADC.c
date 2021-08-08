@@ -1,9 +1,4 @@
-/*
- * ADC.c
- *
- * Created: 6/8/2021 23:34:08
- *  Author: soyal
- */ 
+
 #include "ADC.h"
 
 

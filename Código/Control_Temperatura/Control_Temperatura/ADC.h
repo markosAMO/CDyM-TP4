@@ -1,9 +1,4 @@
-/*
- * ADC.h
- *
- * Created: 7/8/2021 00:04:36
- *  Author: soyal
- */ 
+
 #include <avr/io.h>
 /**
 #define F_CPU 16000000UL

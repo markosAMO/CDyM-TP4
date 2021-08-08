@@ -1,9 +1,4 @@
-/*
- * termometro.c
- *
- * Created: 7/8/2021 12:30:07
- *  Author: soyal
- */ 
+
 
 #include "ADC.h"
 #include "termometro.h"
