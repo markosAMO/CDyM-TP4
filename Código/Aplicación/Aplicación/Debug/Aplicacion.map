@@ -26,6 +26,10 @@ Discarded input sections
  .text          0x00000000        0x0 controlador_lcd.o
  .data          0x00000000        0x0 controlador_lcd.o
  .bss           0x00000000        0x0 controlador_lcd.o
+ .text.actualizarVarInferior
+                0x00000000        0xa controlador_lcd.o
+ .text.actualizarVarSuperior
+                0x00000000        0xa controlador_lcd.o
  .text.mostrarString
                 0x00000000       0x34 controlador_lcd.o
  .text          0x00000000        0x0 lcd.o
@@ -37,6 +41,9 @@ Discarded input sections
                 0x00000000       0x30 lcd.o
  .text.CopyStringtoLCD
                 0x00000000       0x30 lcd.o
+ .text.LCDdefinechar
+                0x00000000       0x54 lcd.o
+ .text.LCDinit  0x00000000       0xc6 lcd.o
  .text.LCDshiftLeft
                 0x00000000       0x1c lcd.o
  .text.LCDshiftRight
@@ -59,6 +66,8 @@ Discarded input sections
                 0x00000000       0xc0 lcd.o
  .text.LCDprogressBar
                 0x00000000       0x98 lcd.o
+ .progmem.data.LcdCustomChar
+                0x00000000       0x40 lcd.o
  .text          0x00000000        0x0 main.o
  .data          0x00000000        0x0 main.o
  .bss           0x00000000        0x0 main.o
@@ -287,7 +296,7 @@ END GROUP
 .rela.plt
  *(.rela.plt)
 
-.text           0x00000000      0x372
+.text           0x00000000      0x248
  *(.vectors)
  .vectors       0x00000000       0x68 D:/Atmel studio 7/7.0/Packs/atmel/ATmega_DFP/1.6.364/gcc/dev/atmega328p/avr5/crtatmega328p.o
                 0x00000000                __vector_default
@@ -303,38 +312,35 @@ END GROUP
  *libprintf_flt.a:*(.progmem.data)
  *libc.a:*(.progmem.data)
  *(.progmem*)
- .progmem.data.LcdCustomChar
-                0x00000068       0x40 lcd.o
-                0x00000068                LcdCustomChar
-                0x000000a8                . = ALIGN (0x2)
+                0x00000068                . = ALIGN (0x2)
  *(.jumptables)
  *(.jumptables*)
  *(.lowtext)
  *(.lowtext*)
-                0x000000a8                __ctors_start = .
+                0x00000068                __ctors_start = .
  *(.ctors)
-                0x000000a8                __ctors_end = .
-                0x000000a8                __dtors_start = .
+                0x00000068                __ctors_end = .
+                0x00000068                __dtors_start = .
  *(.dtors)
-                0x000000a8                __dtors_end = .
+                0x00000068                __dtors_end = .
  SORT(*)(.ctors)
  SORT(*)(.dtors)
  *(.init0)
- .init0         0x000000a8        0x0 D:/Atmel studio 7/7.0/Packs/atmel/ATmega_DFP/1.6.364/gcc/dev/atmega328p/avr5/crtatmega328p.o
-                0x000000a8                __init
+ .init0         0x00000068        0x0 D:/Atmel studio 7/7.0/Packs/atmel/ATmega_DFP/1.6.364/gcc/dev/atmega328p/avr5/crtatmega328p.o
+                0x00000068                __init
  *(.init0)
  *(.init1)
  *(.init1)
  *(.init2)
- .init2         0x000000a8        0xc D:/Atmel studio 7/7.0/Packs/atmel/ATmega_DFP/1.6.364/gcc/dev/atmega328p/avr5/crtatmega328p.o
+ .init2         0x00000068        0xc D:/Atmel studio 7/7.0/Packs/atmel/ATmega_DFP/1.6.364/gcc/dev/atmega328p/avr5/crtatmega328p.o
  *(.init2)
  *(.init3)
  *(.init3)
  *(.init4)
- .init4         0x000000b4       0x16 d:/atmel studio 7/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_copy_data.o)
-                0x000000b4                __do_copy_data
- .init4         0x000000ca       0x10 d:/atmel studio 7/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_clear_bss.o)
-                0x000000ca                __do_clear_bss
+ .init4         0x00000074       0x16 d:/atmel studio 7/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_copy_data.o)
+                0x00000074                __do_copy_data
+ .init4         0x0000008a       0x10 d:/atmel studio 7/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_clear_bss.o)
+                0x0000008a                __do_clear_bss
  *(.init4)
  *(.init5)
  *(.init5)
@@ -345,73 +351,64 @@ END GROUP
  *(.init8)
  *(.init8)
  *(.init9)
- .init9         0x000000da        0x8 D:/Atmel studio 7/7.0/Packs/atmel/ATmega_DFP/1.6.364/gcc/dev/atmega328p/avr5/crtatmega328p.o
+ .init9         0x0000009a        0x8 D:/Atmel studio 7/7.0/Packs/atmel/ATmega_DFP/1.6.364/gcc/dev/atmega328p/avr5/crtatmega328p.o
  *(.init9)
  *(.text)
- .text          0x000000e2        0x4 D:/Atmel studio 7/7.0/Packs/atmel/ATmega_DFP/1.6.364/gcc/dev/atmega328p/avr5/crtatmega328p.o
-                0x000000e2                __vector_22
-                0x000000e2                __vector_1
-                0x000000e2                __vector_24
-                0x000000e2                __vector_12
-                0x000000e2                __bad_interrupt
-                0x000000e2                __vector_6
-                0x000000e2                __vector_3
-                0x000000e2                __vector_23
-                0x000000e2                __vector_25
-                0x000000e2                __vector_11
-                0x000000e2                __vector_13
-                0x000000e2                __vector_17
-                0x000000e2                __vector_19
-                0x000000e2                __vector_7
-                0x000000e2                __vector_5
-                0x000000e2                __vector_4
-                0x000000e2                __vector_9
-                0x000000e2                __vector_2
-                0x000000e2                __vector_21
-                0x000000e2                __vector_15
-                0x000000e2                __vector_8
-                0x000000e2                __vector_14
-                0x000000e2                __vector_10
-                0x000000e2                __vector_16
-                0x000000e2                __vector_18
-                0x000000e2                __vector_20
-                0x000000e6                . = ALIGN (0x2)
+ .text          0x000000a2        0x4 D:/Atmel studio 7/7.0/Packs/atmel/ATmega_DFP/1.6.364/gcc/dev/atmega328p/avr5/crtatmega328p.o
+                0x000000a2                __vector_22
+                0x000000a2                __vector_1
+                0x000000a2                __vector_24
+                0x000000a2                __vector_12
+                0x000000a2                __bad_interrupt
+                0x000000a2                __vector_6
+                0x000000a2                __vector_3
+                0x000000a2                __vector_23
+                0x000000a2                __vector_25
+                0x000000a2                __vector_11
+                0x000000a2                __vector_13
+                0x000000a2                __vector_17
+                0x000000a2                __vector_19
+                0x000000a2                __vector_7
+                0x000000a2                __vector_5
+                0x000000a2                __vector_4
+                0x000000a2                __vector_9
+                0x000000a2                __vector_2
+                0x000000a2                __vector_21
+                0x000000a2                __vector_15
+                0x000000a2                __vector_8
+                0x000000a2                __vector_10
+                0x000000a2                __vector_16
+                0x000000a2                __vector_18
+                0x000000a2                __vector_20
+                0x000000a6                . = ALIGN (0x2)
  *(.text.*)
- .text.actualizarVarInferior
-                0x000000e6        0xa controlador_lcd.o
-                0x000000e6                actualizarVarInferior
- .text.actualizarVarSuperior
-                0x000000f0        0xa controlador_lcd.o
-                0x000000f0                actualizarVarSuperior
  .text.mostrarArriba
-                0x000000fa       0x2e controlador_lcd.o
-                0x000000fa                mostrarArriba
+                0x000000a6       0x2e controlador_lcd.o
+                0x000000a6                mostrarArriba
  .text.mostrarAbajo
-                0x00000128       0x2e controlador_lcd.o
-                0x00000128                mostrarAbajo
- .text.mostrar  0x00000156        0xa controlador_lcd.o
-                0x00000156                mostrar
+                0x000000d4       0x2e controlador_lcd.o
+                0x000000d4                mostrarAbajo
+ .text.mostrar  0x00000102        0xa controlador_lcd.o
+                0x00000102                mostrar
  .text.LCDsendChar
-                0x00000160       0x62 lcd.o
-                0x00000160                LCDsendChar
+                0x0000010c       0x62 lcd.o
+                0x0000010c                LCDsendChar
  .text.LCDsendCommand
-                0x000001c2       0x5a lcd.o
-                0x000001c2                LCDsendCommand
+                0x0000016e       0x5a lcd.o
+                0x0000016e                LCDsendCommand
  .text.LCDGotoXY
-                0x0000021c       0x1e lcd.o
-                0x0000021c                LCDGotoXY
- .text.LCDdefinechar
-                0x0000023a       0x54 lcd.o
-                0x0000023a                LCDdefinechar
- .text.LCDinit  0x0000028e       0xc6 lcd.o
-                0x0000028e                LCDinit
- .text.main     0x00000354       0x1a main.o
-                0x00000354                main
-                0x0000036e                . = ALIGN (0x2)
+                0x000001c8       0x1e lcd.o
+                0x000001c8                LCDGotoXY
+ .text.main     0x000001e6       0x16 main.o
+                0x000001e6                main
+ .text.__vector_14
+                0x000001fc       0x48 main.o
+                0x000001fc                __vector_14
+                0x00000244                . = ALIGN (0x2)
  *(.fini9)
- .fini9         0x0000036e        0x0 d:/atmel studio 7/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_exit.o)
-                0x0000036e                _exit
-                0x0000036e                exit
+ .fini9         0x00000244        0x0 d:/atmel studio 7/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_exit.o)
+                0x00000244                _exit
+                0x00000244                exit
  *(.fini9)
  *(.fini8)
  *(.fini8)
@@ -430,11 +427,11 @@ END GROUP
  *(.fini1)
  *(.fini1)
  *(.fini0)
- .fini0         0x0000036e        0x4 d:/atmel studio 7/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_exit.o)
+ .fini0         0x00000244        0x4 d:/atmel studio 7/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_exit.o)
  *(.fini0)
-                0x00000372                _etext = .
+                0x00000248                _etext = .
 
-.data           0x00800100       0x14 load address 0x00000372
+.data           0x00800100        0x2 load address 0x00000248
                 0x00800100                PROVIDE (__data_start, .)
  *(.data)
  *(.data*)
@@ -443,31 +440,33 @@ END GROUP
  *(.gnu.linkonce.d*)
  *(.rodata)
  *(.rodata*)
- .rodata.str1.1
-                0x00800101       0x12 main.o
  *(.gnu.linkonce.r*)
-                0x00800114                . = ALIGN (0x2)
- *fill*         0x00800113        0x1 
-                0x00800114                _edata = .
-                0x00800114                PROVIDE (__data_end, .)
+                0x00800102                . = ALIGN (0x2)
+ *fill*         0x00800101        0x1 
+                0x00800102                _edata = .
+                0x00800102                PROVIDE (__data_end, .)
 
-.bss            0x00800114        0x4
-                0x00800114                PROVIDE (__bss_start, .)
+.bss            0x00800102        0x7
+                0x00800102                PROVIDE (__bss_start, .)
  *(.bss)
  *(.bss*)
+ .bss.contador  0x00800102        0x2 main.o
+                0x00800102                contador
+ .bss.flag      0x00800104        0x1 main.o
+                0x00800104                flag
  *(COMMON)
- COMMON         0x00800114        0x4 controlador_lcd.o
-                0x00800114                datoSuperior
-                0x00800116                datoInferior
-                0x00800118                PROVIDE (__bss_end, .)
-                0x00000372                __data_load_start = LOADADDR (.data)
-                0x00000386                __data_load_end = (__data_load_start + SIZEOF (.data))
+ COMMON         0x00800105        0x4 controlador_lcd.o
+                0x00800105                datoSuperior
+                0x00800107                datoInferior
+                0x00800109                PROVIDE (__bss_end, .)
+                0x00000248                __data_load_start = LOADADDR (.data)
+                0x0000024a                __data_load_end = (__data_load_start + SIZEOF (.data))
 
-.noinit         0x00800118        0x0
+.noinit         0x00800109        0x0
                 [!provide]                PROVIDE (__noinit_start, .)
  *(.noinit*)
                 [!provide]                PROVIDE (__noinit_end, .)
-                0x00800118                _end = .
+                0x00800109                _end = .
                 [!provide]                PROVIDE (__heap_start, .)
 
 .eeprom         0x00810000        0x0
@@ -534,59 +533,60 @@ END GROUP
 .debug_sfnames
  *(.debug_sfnames)
 
-.debug_aranges  0x00000000      0x120
+.debug_aranges  0x00000000      0x128
  *(.debug_aranges)
  .debug_aranges
                 0x00000000       0x48 controlador_lcd.o
  .debug_aranges
                 0x00000048       0xb8 lcd.o
  .debug_aranges
-                0x00000100       0x20 main.o
+                0x00000100       0x28 main.o
 
 .debug_pubnames
  *(.debug_pubnames)
 
-.debug_info     0x00000000     0x1447
+.debug_info     0x00000000     0x1439
  *(.debug_info .gnu.linkonce.wi.*)
  .debug_info    0x00000000      0x5f4 D:/Atmel studio 7/7.0/Packs/atmel/ATmega_DFP/1.6.364/gcc/dev/atmega328p/avr5/crtatmega328p.o
  .debug_info    0x000005f4      0x267 controlador_lcd.o
  .debug_info    0x0000085b      0xaec lcd.o
- .debug_info    0x00001347      0x100 main.o
+ .debug_info    0x00001347       0xf2 main.o
 
-.debug_abbrev   0x00000000      0x98e
+.debug_abbrev   0x00000000      0x9b2
  *(.debug_abbrev)
  .debug_abbrev  0x00000000      0x5a2 D:/Atmel studio 7/7.0/Packs/atmel/ATmega_DFP/1.6.364/gcc/dev/atmega328p/avr5/crtatmega328p.o
  .debug_abbrev  0x000005a2      0x141 controlador_lcd.o
  .debug_abbrev  0x000006e3      0x22a lcd.o
- .debug_abbrev  0x0000090d       0x81 main.o
+ .debug_abbrev  0x0000090d       0xa5 main.o
 
-.debug_line     0x00000000      0x96a
+.debug_line     0x00000000      0x9eb
  *(.debug_line .debug_line.* .debug_line_end)
  .debug_line    0x00000000      0x134 D:/Atmel studio 7/7.0/Packs/atmel/ATmega_DFP/1.6.364/gcc/dev/atmega328p/avr5/crtatmega328p.o
  .debug_line    0x00000134      0x19b controlador_lcd.o
  .debug_line    0x000002cf      0x628 lcd.o
- .debug_line    0x000008f7       0x73 main.o
+ .debug_line    0x000008f7       0xf4 main.o
 
-.debug_frame    0x00000000      0x2c8
+.debug_frame    0x00000000      0x2ec
  *(.debug_frame)
  .debug_frame   0x00000000       0x98 controlador_lcd.o
  .debug_frame   0x00000098      0x20c lcd.o
- .debug_frame   0x000002a4       0x24 main.o
+ .debug_frame   0x000002a4       0x48 main.o
 
-.debug_str      0x00000000      0x5c6
+.debug_str      0x00000000      0x5e0
  *(.debug_str)
  .debug_str     0x00000000      0x208 D:/Atmel studio 7/7.0/Packs/atmel/ATmega_DFP/1.6.364/gcc/dev/atmega328p/avr5/crtatmega328p.o
  .debug_str     0x00000208      0x1e4 controlador_lcd.o
                                 0x218 (size before relaxing)
  .debug_str     0x000003ec      0x1c9 lcd.o
                                 0x35e (size before relaxing)
- .debug_str     0x000005b5       0x11 main.o
-                                0x1af (size before relaxing)
+ .debug_str     0x000005b5       0x2b main.o
+                                0x1a6 (size before relaxing)
 
-.debug_loc      0x00000000      0xf35
+.debug_loc      0x00000000      0xf7e
  *(.debug_loc)
  .debug_loc     0x00000000      0x199 controlador_lcd.o
  .debug_loc     0x00000199      0xd9c lcd.o
+ .debug_loc     0x00000f35       0x49 main.o
 
 .debug_macinfo
  *(.debug_macinfo)
@@ -606,11 +606,11 @@ END GROUP
 .debug_pubtypes
  *(.debug_pubtypes)
 
-.debug_ranges   0x00000000       0xf0
+.debug_ranges   0x00000000       0xf8
  *(.debug_ranges)
  .debug_ranges  0x00000000       0x38 controlador_lcd.o
  .debug_ranges  0x00000038       0xa8 lcd.o
- .debug_ranges  0x000000e0       0x10 main.o
+ .debug_ranges  0x000000e0       0x18 main.o
 
 .debug_macro
  *(.debug_macro)
