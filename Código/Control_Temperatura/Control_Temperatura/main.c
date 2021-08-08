@@ -11,7 +11,7 @@
 #include "termometro.h"
 #include "controlador_lcd.h"
 #include "lcd.h"
-
+#include <math.h>
 #include <stdlib.h>
 #include <string.h>
 void imprimir( uint8_t temperatura ){
@@ -23,6 +23,21 @@ void imprimir( uint8_t temperatura ){
 			mostrarString(temperatura_en_string,0,0,2);
 		}			
 }
+void imprimir_float( float temperatura ){
+	char string[3]="000";
+	
+	//descompongo el numero
+	double ParteEntera;
+	double parteFraccional = modf(temperatura, &ParteEntera);
+	
+	//imprimo la parte entera
+	imprimir(ParteEntera);
+	//imprimo la coma
+	mostrarString(".",2,0,1);	
+	//imprimo la parte fraccional
+	itoa(parteFraccional, string, 10);
+	mostrarString(string,3,0,1);
+}
 
 int main (void)
 {
@@ -30,10 +45,13 @@ int main (void)
 	TERMOMETRO_init();
 	while(1)
 	{
-		imprimir(TERMOMETRO_get_temperatura_entero());
+		imprimir_float( TERMOMETRO_get_temperatura_real() );
 		_delay_ms(100);
 		LCDclr();			
 	}
 	return 1;
 }
+
+
+
 
