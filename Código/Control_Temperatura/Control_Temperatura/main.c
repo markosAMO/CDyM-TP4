@@ -59,7 +59,7 @@ void floatToString(float temperatura, char* stringFinal){
 void imprimir_float( float temperatura ){
 	char string[5]="00.00";
 	floatToString(temperatura,string);
-	mostrarString(string,0,0,5);
+	mostrarString(string,0,1,5);
 }
 int main (void)
 {
@@ -68,8 +68,7 @@ int main (void)
 	while(1)
 	{
 		imprimir_float( TERMOMETRO_get_temperatura_real() );
-		//imprimir_float( 11.11 );
-		//imprimir( TERMOMETRO_get_temperatura_entero() );
+		imprimir( TERMOMETRO_get_temperatura_entero() );
 		_delay_ms(100);
 		LCDclr();			
 	}
