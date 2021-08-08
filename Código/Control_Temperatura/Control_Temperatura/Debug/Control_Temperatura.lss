@@ -364,11 +364,11 @@ void ADC_flag_reset(void){
  206:	08 95       	ret
 
 00000208 <ADC_get_voltaje_real>:
-// 	/**
-// 	float resultado=ADCL; //give the high byte
-// 	float basura=ADCH;    // esta linea no sirve para nada pero si lo quito se rompe todo el programa, ya que se tiene que leer la parte alta si o si, sino no funciona
-// 	return  resultado;
-// 	**/
+// int ADC_get_voltaje_entero(void){
+// 	return ADC*500/1024;
+// }
+
+float ADC_get_voltaje_real(void){
 	return ADC*500.0/1024.0;
  208:	60 91 78 00 	lds	r22, 0x0078	; 0x800078 <__TEXT_REGION_LENGTH__+0x7e0078>
  20c:	70 91 79 00 	lds	r23, 0x0079	; 0x800079 <__TEXT_REGION_LENGTH__+0x7e0079>
