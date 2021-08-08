@@ -21,11 +21,11 @@ Idx Name          Size      VMA       LMA       File off  Algn
                   CONTENTS, READONLY, DEBUGGING
   8 .debug_frame  000004a4  00000000  00000000  000038c4  2**2
                   CONTENTS, READONLY, DEBUGGING
-  9 .debug_str    00000546  00000000  00000000  00003d68  2**0
+  9 .debug_str    0000054d  00000000  00000000  00003d68  2**0
                   CONTENTS, READONLY, DEBUGGING
- 10 .debug_loc    0000134b  00000000  00000000  000042ae  2**0
+ 10 .debug_loc    0000134b  00000000  00000000  000042b5  2**0
                   CONTENTS, READONLY, DEBUGGING
- 11 .debug_ranges 00000190  00000000  00000000  000055f9  2**0
+ 11 .debug_ranges 00000190  00000000  00000000  00005600  2**0
                   CONTENTS, READONLY, DEBUGGING
 
 Disassembly of section .text:
@@ -758,173 +758,174 @@ void intTostring(int temperatura, char* string){
  438:	0f 91       	pop	r16
  43a:	08 95       	ret
 
-0000043c <imprimir>:
-void imprimir( uint8_t temperatura ){
- 43c:	cf 93       	push	r28
- 43e:	df 93       	push	r29
- 440:	00 d0       	rcall	.+0      	; 0x442 <imprimir+0x6>
- 442:	1f 92       	push	r1
- 444:	cd b7       	in	r28, 0x3d	; 61
- 446:	de b7       	in	r29, 0x3e	; 62
-	char string[3]="00";
- 448:	20 e3       	ldi	r18, 0x30	; 48
- 44a:	30 e3       	ldi	r19, 0x30	; 48
- 44c:	40 e0       	ldi	r20, 0x00	; 0
- 44e:	29 83       	std	Y+1, r18	; 0x01
- 450:	3a 83       	std	Y+2, r19	; 0x02
- 452:	4b 83       	std	Y+3, r20	; 0x03
-	intTostring(temperatura,string);
- 454:	be 01       	movw	r22, r28
- 456:	6f 5f       	subi	r22, 0xFF	; 255
- 458:	7f 4f       	sbci	r23, 0xFF	; 255
- 45a:	90 e0       	ldi	r25, 0x00	; 0
- 45c:	0e 94 09 02 	call	0x412	; 0x412 <intTostring>
-	mostrarString(string,0,0,2);
- 460:	22 e0       	ldi	r18, 0x02	; 2
- 462:	40 e0       	ldi	r20, 0x00	; 0
- 464:	60 e0       	ldi	r22, 0x00	; 0
- 466:	ce 01       	movw	r24, r28
- 468:	01 96       	adiw	r24, 0x01	; 1
- 46a:	0e 94 15 01 	call	0x22a	; 0x22a <mostrarString>
-	
-}
- 46e:	0f 90       	pop	r0
- 470:	0f 90       	pop	r0
- 472:	0f 90       	pop	r0
- 474:	df 91       	pop	r29
- 476:	cf 91       	pop	r28
- 478:	08 95       	ret
+0000043c <floatToString>:
 
-0000047a <floatToString>:
 
 
 void floatToString(float temperatura, char* stringFinal){
- 47a:	cf 92       	push	r12
- 47c:	df 92       	push	r13
- 47e:	ef 92       	push	r14
- 480:	ff 92       	push	r15
- 482:	0f 93       	push	r16
- 484:	1f 93       	push	r17
- 486:	cf 93       	push	r28
- 488:	df 93       	push	r29
- 48a:	00 d0       	rcall	.+0      	; 0x48c <floatToString+0x12>
- 48c:	00 d0       	rcall	.+0      	; 0x48e <floatToString+0x14>
- 48e:	00 d0       	rcall	.+0      	; 0x490 <floatToString+0x16>
- 490:	cd b7       	in	r28, 0x3d	; 61
- 492:	de b7       	in	r29, 0x3e	; 62
- 494:	8a 01       	movw	r16, r20
+ 43c:	cf 92       	push	r12
+ 43e:	df 92       	push	r13
+ 440:	ef 92       	push	r14
+ 442:	ff 92       	push	r15
+ 444:	0f 93       	push	r16
+ 446:	1f 93       	push	r17
+ 448:	cf 93       	push	r28
+ 44a:	df 93       	push	r29
+ 44c:	00 d0       	rcall	.+0      	; 0x44e <floatToString+0x12>
+ 44e:	00 d0       	rcall	.+0      	; 0x450 <floatToString+0x14>
+ 450:	00 d0       	rcall	.+0      	; 0x452 <floatToString+0x16>
+ 452:	cd b7       	in	r28, 0x3d	; 61
+ 454:	de b7       	in	r29, 0x3e	; 62
+ 456:	8a 01       	movw	r16, r20
 	char string[2]="00";
- 496:	20 e3       	ldi	r18, 0x30	; 48
- 498:	30 e3       	ldi	r19, 0x30	; 48
- 49a:	3a 83       	std	Y+2, r19	; 0x02
- 49c:	29 83       	std	Y+1, r18	; 0x01
+ 458:	20 e3       	ldi	r18, 0x30	; 48
+ 45a:	30 e3       	ldi	r19, 0x30	; 48
+ 45c:	3a 83       	std	Y+2, r19	; 0x02
+ 45e:	29 83       	std	Y+1, r18	; 0x01
 	//descompongo el numero
 	double ParteEntera;
 	double parteFraccional = modf(temperatura, &ParteEntera);
- 49e:	ae 01       	movw	r20, r28
- 4a0:	4d 5f       	subi	r20, 0xFD	; 253
- 4a2:	5f 4f       	sbci	r21, 0xFF	; 255
- 4a4:	0e 94 02 04 	call	0x804	; 0x804 <modf>
- 4a8:	6b 01       	movw	r12, r22
- 4aa:	7c 01       	movw	r14, r24
+ 460:	ae 01       	movw	r20, r28
+ 462:	4d 5f       	subi	r20, 0xFD	; 253
+ 464:	5f 4f       	sbci	r21, 0xFF	; 255
+ 466:	0e 94 02 04 	call	0x804	; 0x804 <modf>
+ 46a:	6b 01       	movw	r12, r22
+ 46c:	7c 01       	movw	r14, r24
 	
 	//parte entera
 	intTostring(ParteEntera,string);
- 4ac:	6b 81       	ldd	r22, Y+3	; 0x03
- 4ae:	7c 81       	ldd	r23, Y+4	; 0x04
- 4b0:	8d 81       	ldd	r24, Y+5	; 0x05
- 4b2:	9e 81       	ldd	r25, Y+6	; 0x06
- 4b4:	0e 94 3d 03 	call	0x67a	; 0x67a <__fixsfsi>
- 4b8:	dc 01       	movw	r26, r24
- 4ba:	cb 01       	movw	r24, r22
- 4bc:	be 01       	movw	r22, r28
- 4be:	6f 5f       	subi	r22, 0xFF	; 255
- 4c0:	7f 4f       	sbci	r23, 0xFF	; 255
- 4c2:	0e 94 09 02 	call	0x412	; 0x412 <intTostring>
+ 46e:	6b 81       	ldd	r22, Y+3	; 0x03
+ 470:	7c 81       	ldd	r23, Y+4	; 0x04
+ 472:	8d 81       	ldd	r24, Y+5	; 0x05
+ 474:	9e 81       	ldd	r25, Y+6	; 0x06
+ 476:	0e 94 3d 03 	call	0x67a	; 0x67a <__fixsfsi>
+ 47a:	dc 01       	movw	r26, r24
+ 47c:	cb 01       	movw	r24, r22
+ 47e:	be 01       	movw	r22, r28
+ 480:	6f 5f       	subi	r22, 0xFF	; 255
+ 482:	7f 4f       	sbci	r23, 0xFF	; 255
+ 484:	0e 94 09 02 	call	0x412	; 0x412 <intTostring>
 	stringFinal[0]=string[0];
- 4c6:	89 81       	ldd	r24, Y+1	; 0x01
- 4c8:	f8 01       	movw	r30, r16
- 4ca:	80 83       	st	Z, r24
+ 488:	89 81       	ldd	r24, Y+1	; 0x01
+ 48a:	f8 01       	movw	r30, r16
+ 48c:	80 83       	st	Z, r24
 	stringFinal[1]=string[1];
- 4cc:	8a 81       	ldd	r24, Y+2	; 0x02
- 4ce:	81 83       	std	Z+1, r24	; 0x01
+ 48e:	8a 81       	ldd	r24, Y+2	; 0x02
+ 490:	81 83       	std	Z+1, r24	; 0x01
 
 	//parte fraccional
 	if (parteFraccional*100<10){
- 4d0:	20 e0       	ldi	r18, 0x00	; 0
- 4d2:	30 e0       	ldi	r19, 0x00	; 0
- 4d4:	48 ec       	ldi	r20, 0xC8	; 200
- 4d6:	52 e4       	ldi	r21, 0x42	; 66
- 4d8:	c7 01       	movw	r24, r14
- 4da:	b6 01       	movw	r22, r12
- 4dc:	0e 94 36 04 	call	0x86c	; 0x86c <__mulsf3>
- 4e0:	6b 01       	movw	r12, r22
- 4e2:	7c 01       	movw	r14, r24
- 4e4:	20 e0       	ldi	r18, 0x00	; 0
- 4e6:	30 e0       	ldi	r19, 0x00	; 0
- 4e8:	40 e2       	ldi	r20, 0x20	; 32
- 4ea:	51 e4       	ldi	r21, 0x41	; 65
- 4ec:	0e 94 38 03 	call	0x670	; 0x670 <__cmpsf2>
- 4f0:	88 23       	and	r24, r24
- 4f2:	9c f4       	brge	.+38     	; 0x51a <floatToString+0xa0>
+ 492:	20 e0       	ldi	r18, 0x00	; 0
+ 494:	30 e0       	ldi	r19, 0x00	; 0
+ 496:	48 ec       	ldi	r20, 0xC8	; 200
+ 498:	52 e4       	ldi	r21, 0x42	; 66
+ 49a:	c7 01       	movw	r24, r14
+ 49c:	b6 01       	movw	r22, r12
+ 49e:	0e 94 36 04 	call	0x86c	; 0x86c <__mulsf3>
+ 4a2:	6b 01       	movw	r12, r22
+ 4a4:	7c 01       	movw	r14, r24
+ 4a6:	20 e0       	ldi	r18, 0x00	; 0
+ 4a8:	30 e0       	ldi	r19, 0x00	; 0
+ 4aa:	40 e2       	ldi	r20, 0x20	; 32
+ 4ac:	51 e4       	ldi	r21, 0x41	; 65
+ 4ae:	0e 94 38 03 	call	0x670	; 0x670 <__cmpsf2>
+ 4b2:	88 23       	and	r24, r24
+ 4b4:	9c f4       	brge	.+38     	; 0x4dc <floatToString+0xa0>
 		// primera parte fraccional
 		stringFinal[3]='0';
- 4f4:	80 e3       	ldi	r24, 0x30	; 48
- 4f6:	f8 01       	movw	r30, r16
- 4f8:	83 83       	std	Z+3, r24	; 0x03
+ 4b6:	80 e3       	ldi	r24, 0x30	; 48
+ 4b8:	f8 01       	movw	r30, r16
+ 4ba:	83 83       	std	Z+3, r24	; 0x03
 		// segunda parte fraccional
 		itoa(parteFraccional*100, string, 10);
- 4fa:	c7 01       	movw	r24, r14
- 4fc:	b6 01       	movw	r22, r12
- 4fe:	0e 94 3d 03 	call	0x67a	; 0x67a <__fixsfsi>
- 502:	dc 01       	movw	r26, r24
- 504:	cb 01       	movw	r24, r22
- 506:	4a e0       	ldi	r20, 0x0A	; 10
- 508:	be 01       	movw	r22, r28
- 50a:	6f 5f       	subi	r22, 0xFF	; 255
- 50c:	7f 4f       	sbci	r23, 0xFF	; 255
- 50e:	0e 94 38 05 	call	0xa70	; 0xa70 <__itoa_ncheck>
+ 4bc:	c7 01       	movw	r24, r14
+ 4be:	b6 01       	movw	r22, r12
+ 4c0:	0e 94 3d 03 	call	0x67a	; 0x67a <__fixsfsi>
+ 4c4:	dc 01       	movw	r26, r24
+ 4c6:	cb 01       	movw	r24, r22
+ 4c8:	4a e0       	ldi	r20, 0x0A	; 10
+ 4ca:	be 01       	movw	r22, r28
+ 4cc:	6f 5f       	subi	r22, 0xFF	; 255
+ 4ce:	7f 4f       	sbci	r23, 0xFF	; 255
+ 4d0:	0e 94 38 05 	call	0xa70	; 0xa70 <__itoa_ncheck>
 		stringFinal[4]=string[0];
- 512:	89 81       	ldd	r24, Y+1	; 0x01
- 514:	f8 01       	movw	r30, r16
- 516:	84 83       	std	Z+4, r24	; 0x04
- 518:	11 c0       	rjmp	.+34     	; 0x53c <floatToString+0xc2>
+ 4d4:	89 81       	ldd	r24, Y+1	; 0x01
+ 4d6:	f8 01       	movw	r30, r16
+ 4d8:	84 83       	std	Z+4, r24	; 0x04
+ 4da:	11 c0       	rjmp	.+34     	; 0x4fe <floatToString+0xc2>
 		}else{
 		// parte fraccional
 		itoa(parteFraccional*100, string, 10);
- 51a:	c7 01       	movw	r24, r14
- 51c:	b6 01       	movw	r22, r12
- 51e:	0e 94 3d 03 	call	0x67a	; 0x67a <__fixsfsi>
- 522:	dc 01       	movw	r26, r24
- 524:	cb 01       	movw	r24, r22
- 526:	4a e0       	ldi	r20, 0x0A	; 10
- 528:	be 01       	movw	r22, r28
- 52a:	6f 5f       	subi	r22, 0xFF	; 255
- 52c:	7f 4f       	sbci	r23, 0xFF	; 255
- 52e:	0e 94 38 05 	call	0xa70	; 0xa70 <__itoa_ncheck>
+ 4dc:	c7 01       	movw	r24, r14
+ 4de:	b6 01       	movw	r22, r12
+ 4e0:	0e 94 3d 03 	call	0x67a	; 0x67a <__fixsfsi>
+ 4e4:	dc 01       	movw	r26, r24
+ 4e6:	cb 01       	movw	r24, r22
+ 4e8:	4a e0       	ldi	r20, 0x0A	; 10
+ 4ea:	be 01       	movw	r22, r28
+ 4ec:	6f 5f       	subi	r22, 0xFF	; 255
+ 4ee:	7f 4f       	sbci	r23, 0xFF	; 255
+ 4f0:	0e 94 38 05 	call	0xa70	; 0xa70 <__itoa_ncheck>
 			stringFinal[3]=string[0];
- 532:	89 81       	ldd	r24, Y+1	; 0x01
- 534:	f8 01       	movw	r30, r16
- 536:	83 83       	std	Z+3, r24	; 0x03
+ 4f4:	89 81       	ldd	r24, Y+1	; 0x01
+ 4f6:	f8 01       	movw	r30, r16
+ 4f8:	83 83       	std	Z+3, r24	; 0x03
 			stringFinal[4]=string[1];
- 538:	8a 81       	ldd	r24, Y+2	; 0x02
- 53a:	84 83       	std	Z+4, r24	; 0x04
+ 4fa:	8a 81       	ldd	r24, Y+2	; 0x02
+ 4fc:	84 83       	std	Z+4, r24	; 0x04
 	}
 }
- 53c:	26 96       	adiw	r28, 0x06	; 6
- 53e:	0f b6       	in	r0, 0x3f	; 63
- 540:	f8 94       	cli
- 542:	de bf       	out	0x3e, r29	; 62
- 544:	0f be       	out	0x3f, r0	; 63
- 546:	cd bf       	out	0x3d, r28	; 61
- 548:	df 91       	pop	r29
- 54a:	cf 91       	pop	r28
- 54c:	1f 91       	pop	r17
- 54e:	0f 91       	pop	r16
- 550:	ff 90       	pop	r15
- 552:	ef 90       	pop	r14
- 554:	df 90       	pop	r13
- 556:	cf 90       	pop	r12
+ 4fe:	26 96       	adiw	r28, 0x06	; 6
+ 500:	0f b6       	in	r0, 0x3f	; 63
+ 502:	f8 94       	cli
+ 504:	de bf       	out	0x3e, r29	; 62
+ 506:	0f be       	out	0x3f, r0	; 63
+ 508:	cd bf       	out	0x3d, r28	; 61
+ 50a:	df 91       	pop	r29
+ 50c:	cf 91       	pop	r28
+ 50e:	1f 91       	pop	r17
+ 510:	0f 91       	pop	r16
+ 512:	ff 90       	pop	r15
+ 514:	ef 90       	pop	r14
+ 516:	df 90       	pop	r13
+ 518:	cf 90       	pop	r12
+ 51a:	08 95       	ret
+
+0000051c <imprimir_entero>:
+void imprimir_entero( uint8_t temperatura ){
+ 51c:	cf 93       	push	r28
+ 51e:	df 93       	push	r29
+ 520:	00 d0       	rcall	.+0      	; 0x522 <imprimir_entero+0x6>
+ 522:	1f 92       	push	r1
+ 524:	cd b7       	in	r28, 0x3d	; 61
+ 526:	de b7       	in	r29, 0x3e	; 62
+	char string[3]="00";
+ 528:	20 e3       	ldi	r18, 0x30	; 48
+ 52a:	30 e3       	ldi	r19, 0x30	; 48
+ 52c:	40 e0       	ldi	r20, 0x00	; 0
+ 52e:	29 83       	std	Y+1, r18	; 0x01
+ 530:	3a 83       	std	Y+2, r19	; 0x02
+ 532:	4b 83       	std	Y+3, r20	; 0x03
+	intTostring(temperatura,string);
+ 534:	be 01       	movw	r22, r28
+ 536:	6f 5f       	subi	r22, 0xFF	; 255
+ 538:	7f 4f       	sbci	r23, 0xFF	; 255
+ 53a:	90 e0       	ldi	r25, 0x00	; 0
+ 53c:	0e 94 09 02 	call	0x412	; 0x412 <intTostring>
+	mostrarString(string,0,0,2);
+ 540:	22 e0       	ldi	r18, 0x02	; 2
+ 542:	40 e0       	ldi	r20, 0x00	; 0
+ 544:	60 e0       	ldi	r22, 0x00	; 0
+ 546:	ce 01       	movw	r24, r28
+ 548:	01 96       	adiw	r24, 0x01	; 1
+ 54a:	0e 94 15 01 	call	0x22a	; 0x22a <mostrarString>
+	
+}
+ 54e:	0f 90       	pop	r0
+ 550:	0f 90       	pop	r0
+ 552:	0f 90       	pop	r0
+ 554:	df 91       	pop	r29
+ 556:	cf 91       	pop	r28
  558:	08 95       	ret
 
 0000055a <imprimir_float>:
@@ -950,7 +951,7 @@ void imprimir_float( float temperatura ){
  57a:	ae 01       	movw	r20, r28
  57c:	4f 5f       	subi	r20, 0xFF	; 255
  57e:	5f 4f       	sbci	r21, 0xFF	; 255
- 580:	0e 94 3d 02 	call	0x47a	; 0x47a <floatToString>
+ 580:	0e 94 1e 02 	call	0x43c	; 0x43c <floatToString>
 	mostrarString(string,0,1,5);
  584:	25 e0       	ldi	r18, 0x05	; 5
  586:	41 e0       	ldi	r20, 0x01	; 1
@@ -980,9 +981,9 @@ int main (void)
 		imprimir_float( TERMOMETRO_get_temperatura_real() );
  5aa:	0e 94 fe 02 	call	0x5fc	; 0x5fc <TERMOMETRO_get_temperatura_real>
  5ae:	0e 94 ad 02 	call	0x55a	; 0x55a <imprimir_float>
-		imprimir( TERMOMETRO_get_temperatura_entero() );
+		imprimir_entero( TERMOMETRO_get_temperatura_entero() );
  5b2:	0e 94 f0 02 	call	0x5e0	; 0x5e0 <TERMOMETRO_get_temperatura_entero>
- 5b6:	0e 94 1e 02 	call	0x43c	; 0x43c <imprimir>
+ 5b6:	0e 94 8e 02 	call	0x51c	; 0x51c <imprimir_entero>
  5ba:	2f ef       	ldi	r18, 0xFF	; 255
  5bc:	80 e7       	ldi	r24, 0x70	; 112
  5be:	92 e0       	ldi	r25, 0x02	; 2

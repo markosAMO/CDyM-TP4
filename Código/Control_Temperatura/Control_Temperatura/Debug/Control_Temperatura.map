@@ -518,12 +518,12 @@ END GROUP
  .text.intTostring
                 0x00000412       0x2a main.o
                 0x00000412                intTostring
- .text.imprimir
-                0x0000043c       0x3e main.o
-                0x0000043c                imprimir
  .text.floatToString
-                0x0000047a       0xe0 main.o
-                0x0000047a                floatToString
+                0x0000043c       0xe0 main.o
+                0x0000043c                floatToString
+ .text.imprimir_entero
+                0x0000051c       0x3e main.o
+                0x0000051c                imprimir_entero
  .text.imprimir_float
                 0x0000055a       0x48 main.o
                 0x0000055a                imprimir_float
@@ -782,7 +782,7 @@ END GROUP
  .debug_frame   0x00000384       0xc8 main.o
  .debug_frame   0x0000044c       0x58 termometro.o
 
-.debug_str      0x00000000      0x546
+.debug_str      0x00000000      0x54d
  *(.debug_str)
  .debug_str     0x00000000      0x223 ADC.o
                                 0x25d (size before relaxing)
@@ -790,9 +790,9 @@ END GROUP
                                 0x1db (size before relaxing)
  .debug_str     0x00000283      0x1c0 lcd.o
                                 0x36a (size before relaxing)
- .debug_str     0x00000443       0xf1 main.o
-                                0x2ef (size before relaxing)
- .debug_str     0x00000534       0x12 termometro.o
+ .debug_str     0x00000443       0xf8 main.o
+                                0x2f6 (size before relaxing)
+ .debug_str     0x0000053b       0x12 termometro.o
                                 0x257 (size before relaxing)
 
 .debug_loc      0x00000000     0x134b

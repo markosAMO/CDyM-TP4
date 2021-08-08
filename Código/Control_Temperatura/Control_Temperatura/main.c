@@ -23,12 +23,7 @@ void intTostring(int temperatura, char* string){
 		string[0]='0';
 	}
 }
-void imprimir( uint8_t temperatura ){
-	char string[3]="00";
-	intTostring(temperatura,string);
-	mostrarString(string,0,0,2);
-	
-}
+
 
 
 void floatToString(float temperatura, char* stringFinal){
@@ -56,6 +51,12 @@ void floatToString(float temperatura, char* stringFinal){
 			stringFinal[4]=string[1];
 	}
 }
+void imprimir_entero( uint8_t temperatura ){
+	char string[3]="00";
+	intTostring(temperatura,string);
+	mostrarString(string,0,0,2);
+	
+}
 void imprimir_float( float temperatura ){
 	char string[5]="00.00";
 	floatToString(temperatura,string);
@@ -68,7 +69,7 @@ int main (void)
 	while(1)
 	{
 		imprimir_float( TERMOMETRO_get_temperatura_real() );
-		imprimir( TERMOMETRO_get_temperatura_entero() );
+		imprimir_entero( TERMOMETRO_get_temperatura_entero() );
 		_delay_ms(100);
 		LCDclr();			
 	}
