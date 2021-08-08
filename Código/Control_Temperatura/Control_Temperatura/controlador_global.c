@@ -7,6 +7,8 @@
 
 #include "controlador_lcd.h"
 #include "termometro.h"
+#include "actuadores.h"
+#include <stdio.h>
 
 #include "string.h"
 #include "avr/interrupt.h"
@@ -14,8 +16,10 @@
 int limite_inferior = 17;
 int limite_superior = 25;
 
-char linea_superior[] = "Temperatura:";
-char linea_inferior[] = "                ";
+uint8_t linea_superior[] = "Temperatura:    ";
+uint8_t linea_inferior[] = "                                ";
+
+void set_temperatura_display(int temperatura);
 
 void regular_temperatura()
 {
@@ -45,7 +49,7 @@ void regular_temperatura()
 
 void set_temperatura_display(int temperatura)
 {
-	sprintf(linea_inferior, "%d", temperatura);
+	sprintf(linea_inferior, "%d               ", temperatura);
 }
 
 void set_renglones_display()

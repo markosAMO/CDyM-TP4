@@ -15,20 +15,20 @@ void set_puertos()
 
 void encender_estufa()
 {
-	PORTD0 = 1;
+	PORTD = 0x01;
 }
 
 void apagar_estufa()
 {
-	PORTD0 = 0;
+	PORTD = PORTD & 0xfe;
 }
 
 void encender_ventilador()
 {
-	PORTD1 = 1;
+	PORTD = 0x02;
 }
 
 void apagar_ventilador()
 {
-	PORTD = 0;
+	PORTD = PORTD & 0xfd;
 }

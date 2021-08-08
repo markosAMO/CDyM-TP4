@@ -11,28 +11,24 @@
 #include "termometro.h"
 #include "controlador_lcd.h"
 #include "lcd.h"
+#include "controlador_global.h"
+#include "actuadores.h"
 
 #include <stdlib.h>
 #include <string.h>
-void imprimir( uint8_t temperatura ){
-		char temperatura_en_string[3]="00";
-		itoa(temperatura,temperatura_en_string,10);
-		if (temperatura<10){
-			mostrarString(temperatura_en_string,0,0,1);	
-		}else{
-			mostrarString(temperatura_en_string,0,0,2);
-		}			
-}
 
 int main (void)
 {
 	LCDinit();
 	TERMOMETRO_init();
+	set_renglones_display();
+	set_puertos();
+	
 	while(1)
 	{
-		imprimir(TERMOMETRO_get_temperatura());
-		_delay_ms(100);
-		LCDclr();			
+		regular_temperatura();
+		mostrar();
+		_delay_ms(100);			
 	}
 	return 1;
 }
