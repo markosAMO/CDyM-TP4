@@ -19,7 +19,7 @@ uint8_t TERMOMETRO_get_temperatura_entero(void){
 	ADC_Start();
 	while(ADC_conversion_completed()); //wait for conversion to finish
 	ADC_flag_reset();	
-	uint8_t temperatura=ADC_get_voltaje_entero();
+	uint8_t temperatura=ADC_get_temperatura_entero();
 	if (temperatura>50){temperatura=50;}
 	if (temperatura<0){temperatura=0;}	
 	return temperatura;
@@ -31,8 +31,10 @@ float TERMOMETRO_get_temperatura_real(void){
 	while(ADC_conversion_completed()); //wait for conversion to finish
 	ADC_flag_reset();
 	
-	float temperatura=ADC_get_voltaje_real();
+	float temperatura=ADC_get_voltaje_real()*100;
+	
 	if (temperatura>50){temperatura=50;}
 	if (temperatura<0){temperatura=0;}
-	return temperatura;
+	
+	return temperatura;  //el 100 viene de 1/(10*10^-3)
 }

@@ -67,13 +67,18 @@ void ADC_flag_reset(void){
 	ADCSRA |= (1<<ADIF); //borrar flag
 }
 
-int ADC_get_voltaje_entero(void){
+int ADC_get_temperatura_entero(void){
 	/**
 	int resultado=ADCL;
 	int basura=ADCH;  // esta linea no sirve para nada pero si lo quito se rompe todo el programa, ya que se tiene que leer la parte alta si o si, sino no funciona
 	return  resultado;//give the high byte
 	**/
-	return ADC*500/1024;
+	int voltaje =ADC*5*100/1024;
+	/**
+	voltaje=voltaje*5;
+	voltaje=voltaje/1024;
+	**/
+	return voltaje;
 }
 
 float ADC_get_voltaje_real(void){
@@ -82,5 +87,10 @@ float ADC_get_voltaje_real(void){
 	float basura=ADCH;    // esta linea no sirve para nada pero si lo quito se rompe todo el programa, ya que se tiene que leer la parte alta si o si, sino no funciona
 	return  resultado;
 	**/
-	return ADC*500/1024;
+	float voltaje =ADC;
+	voltaje=voltaje*5;
+	voltaje=voltaje/1024;
+	return voltaje;
+	
+	
 }

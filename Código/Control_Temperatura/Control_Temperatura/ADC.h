@@ -23,5 +23,5 @@ void  ADC_init(int prescaler, int pin);
 void  ADC_Start(void);
 int   ADC_conversion_completed(void);
 void  ADC_flag_reset(void);
-int   ADC_get_voltaje_entero(void);
+int   ADC_get_temperatura_entero(void);
 float ADC_get_voltaje_real(void);
