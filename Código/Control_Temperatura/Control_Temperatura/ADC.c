@@ -62,20 +62,20 @@ void ADC_flag_reset(void){
 	ADCSRA |= (1<<ADIF); //borrar flag
 }
 
-int ADC_get_voltaje_entero(void){
-	/**
-	int resultado=ADCL;
-	int basura=ADCH;  // esta linea no sirve para nada pero si lo quito se rompe todo el programa, ya que se tiene que leer la parte alta si o si, sino no funciona
-	return  resultado;//give the high byte
-	**/
-	return ADC*5000.0/1024.0;
-}
+// int ADC_get_voltaje_entero(void){
+// 	/**
+// 	int resultado=ADCL;
+// 	int basura=ADCH;  // esta linea no sirve para nada pero si lo quito se rompe todo el programa, ya que se tiene que leer la parte alta si o si, sino no funciona
+// 	return  resultado;//give the high byte
+// 	**/
+// 	return ADC*500/1024;
+// }
 
 float ADC_get_voltaje_real(void){
-	/**
-	float resultado=ADCL; //give the high byte
-	float basura=ADCH;    // esta linea no sirve para nada pero si lo quito se rompe todo el programa, ya que se tiene que leer la parte alta si o si, sino no funciona
-	return  resultado;
-	**/
+// 	/**
+// 	float resultado=ADCL; //give the high byte
+// 	float basura=ADCH;    // esta linea no sirve para nada pero si lo quito se rompe todo el programa, ya que se tiene que leer la parte alta si o si, sino no funciona
+// 	return  resultado;
+// 	**/
 	return ADC*500.0/1024.0;
 }
