@@ -1,8 +1,8 @@
 /*
- * Aplicacion
+ * TestInt.c
  *
- * Created: 06/08/2021 12:30:07
- * Author : GOD
+ * Created: 8/8/2021 00:24:53
+ * Author : God
  */ 
 
 #include <avr/io.h>
@@ -24,9 +24,9 @@ int main(void)
 	sei();
 	/*se configura las interrupciones por temporizador*/
 
-    while (1) 
-    {
-    }
+	while (1)
+	{
+	}
 }
 ISR(TIMER0_COMPA_vect){
 	contador++;
