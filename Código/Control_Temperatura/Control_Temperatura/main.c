@@ -17,32 +17,11 @@
 #include <stdlib.h>
 #include <string.h>
 #include <math.h>
-#include <stdlib.h>
-#include <string.h>
-void imprimir( uint8_t temperatura ){
-		char temperatura_en_string[3]="00";
-		itoa(temperatura,temperatura_en_string,10);
-		if (temperatura<10){
-			mostrarString(temperatura_en_string,0,0,1);	
-		}else{
-			mostrarString(temperatura_en_string,0,0,2);
-		}			
-}
-void imprimir_float( float temperatura ){
-	char string[3]="000";
-	
-	//descompongo el numero
-	double ParteEntera;
-	double parteFraccional = modf(temperatura, &ParteEntera);
-	
-	//imprimo la parte entera
-	imprimir(ParteEntera);
-	//imprimo la coma
-	mostrarString(".",2,0,1);	
-	//imprimo la parte fraccional
-	itoa(parteFraccional, string, 10);
-	mostrarString(string,3,0,1);
-}
+#include <avr/interrupt.h>
+
+float temp;
+volatile uint8_t flag = 0;
+volatile uint16_t contador = 0;
 
 int main (void)
 {
@@ -50,19 +29,30 @@ int main (void)
 	TERMOMETRO_init();
 	set_renglones_display();
 	set_puertos();
+		/*se configura las interrupciones por temporizador*/
+		OCR0A = 250;
+		TCCR0A = 0x02; //se activa modo CTC
+		TCCR0B = 0x02;
+		TIMSK0 = (1<<OCIE0A);
+		sei();
+		/*se configura las interrupciones por temporizador*/
 	
 	while(1)
 	{
 		regular_temperatura();
-		mostrar();
 		_delay_ms(100);			
-		imprimir_float( TERMOMETRO_get_temperatura_real() );
-		_delay_ms(100);
-		LCDclr();			
 	}
 	return 1;
 }
 
-
+ISR(TIMER0_COMPA_vect){
+	contador++;
+	if(contador == 1935)
+	{
+		mostrar();
+		flag = 1;
+		contador = 0;
+	}
+}
 
 

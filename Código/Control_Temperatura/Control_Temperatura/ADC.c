@@ -73,7 +73,7 @@ int ADC_get_voltaje_entero(void){
 	int basura=ADCH;  // esta linea no sirve para nada pero si lo quito se rompe todo el programa, ya que se tiene que leer la parte alta si o si, sino no funciona
 	return  resultado;//give the high byte
 	**/
-	return ADC*500/1024;
+	return ADC*5000.0/1024.0;
 }
 
 float ADC_get_voltaje_real(void){
@@ -82,5 +82,5 @@ float ADC_get_voltaje_real(void){
 	float basura=ADCH;    // esta linea no sirve para nada pero si lo quito se rompe todo el programa, ya que se tiene que leer la parte alta si o si, sino no funciona
 	return  resultado;
 	**/
-	return ADC*500/1024;
+	return ADC*500.0/1024.0;
 }

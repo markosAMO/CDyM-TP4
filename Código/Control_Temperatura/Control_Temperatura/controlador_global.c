@@ -9,6 +9,9 @@
 #include "termometro.h"
 #include "actuadores.h"
 #include <stdio.h>
+#include <math.h>
+#include <stdlib.h>
+#include <string.h>
 
 #include "string.h"
 #include "avr/interrupt.h"
@@ -19,22 +22,29 @@ int limite_superior = 25;
 uint8_t linea_superior[] = "Temperatura:    ";
 uint8_t linea_inferior[] = "                                ";
 
-void set_temperatura_display(int temperatura);
+float temp;
+
+void set_temperatura_display_int(int temperatura);
+void set_temperatura_display_float(float temperatura);
 
 void regular_temperatura()
 {
-	int temperatura_actual = TERMOMETRO_get_temperatura();
+	int temperatura_actual = TERMOMETRO_get_temperatura_entero();
+	temp= temperatura_actual/10.0;
+	//float temperatura_actual = TERMOMETRO_get_temperatura_real();
+
 	
 	cli();
-	set_temperatura_display(temperatura_actual);
+	set_temperatura_display_int(temperatura_actual);
+	//set_temperatura_display_float(temperatura_actual);
 	sei();
 	
-	if (temperatura_actual <= limite_inferior)
+	if (temp <= limite_inferior)
 	{
 		encender_estufa();
 		apagar_ventilador();
 	}
-	else if (temperatura_actual >= limite_superior)
+	else if (temp >= limite_superior)
 	{
 		encender_ventilador();
 		apagar_estufa();
@@ -47,11 +57,23 @@ void regular_temperatura()
 	
 }
 
-void set_temperatura_display(int temperatura)
+void set_temperatura_display_int(int temperatura)
 {
-	sprintf(linea_inferior, "%d               ", temperatura);
+	int fracc = (temperatura) % 10;
+	int enter = (int)(temperatura / 10);
+	
+	sprintf(linea_inferior, "%d.%d C              ", enter,fracc);
 }
 
+void set_temperatura_display_float(float temperatura)
+{
+	int fracc = (int)(temperatura * 10) % 10;
+	int enter = (int)temperatura;
+	
+	sprintf(linea_inferior, "%d.%d C              ", enter,fracc);
+	
+	
+}
 void set_renglones_display()
 {
 	actualizarVarInferior(linea_inferior);

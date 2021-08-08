@@ -14,13 +14,13 @@ void TERMOMETRO_init(void){
 	ADC_init(64,0);
 }
 
-uint8_t TERMOMETRO_get_temperatura_entero(void){
+int TERMOMETRO_get_temperatura_entero(void){
 	
 	ADC_Start();
 	while(ADC_conversion_completed()); //wait for conversion to finish
 	ADC_flag_reset();	
-	uint8_t temperatura=ADC_get_voltaje_entero();
-	if (temperatura>50){temperatura=50;}
+	int temperatura=ADC_get_voltaje_entero();
+	if (temperatura>500){temperatura=500;}
 	if (temperatura<0){temperatura=0;}	
 	return temperatura;
 }
